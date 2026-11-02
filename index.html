@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Kiddy - Ultimate Game & Media Zone</title>
+    <!-- Font bora kabisa ya kimataifa ya Gaming na Tech (Rajdhani & Montserrat) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Rajdhani', 'Montserrat', sans-serif;
+        }
+
+        :root {
+            --primary-color: #06b6d4; 
+            --primary-glow: rgba(6, 182, 212, 0.6);
+            --card-bg: rgba(11, 15, 25, 0.78);
+        }
+
+        body {
+            background-image: linear-gradient(to bottom, rgba(5, 7, 12, 0.75), rgba(11, 15, 25, 0.90)), 
+                              url('d14yutong v1a.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background-image 1.5s ease-in-out;
+            position: relative;
+        }
+
+        /* INTRO SPLASH SCREEN YA TRENDY / GLOWMIST (KAMA KWENYE VIDEO YAKO) */
+        #introSplash {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #000000;
+            z-index: 20000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: fadeOutSplash 0.5s ease 4s forwards;
+        }
+
+        @keyframes trendyBoxGlow {
+            0% { border-color: #ff3333; box-shadow: 0 0 15px #ff3333, inset 0 0 15px #ff3333; transform: scale(0.9); opacity: 0; }
+            50% { border-color: #ffffff; box-shadow: 0 0 35px #ffffff, inset 0 0 25px #ff3333; transform: scale(1.02); opacity: 1; }
+            100% { border-color: #ff3333; box-shadow: 0 0 25px #ff3333, inset 0 0 15px #ff3333; transform: scale(1); opacity: 1; }
+        }
+
+        .intro-trendy-box {
+            position: relative;
+            padding: 25px 50px;
+            border: 3px solid #ff3333;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.9);
+            animation: trendyBoxGlow 2.5s ease-in-out infinite alternate;
+            text-align: center;
+        }
+
+        .intro-trendy-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 0 15px #ff3333, 0 0 25px #ff0000;
+        }
+
+        .intro-trendy-text span {
+            color: #ff3333;
+        }
+
+        @keyframes fadeOutSplash {
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        /* RANGI YA BODA YA KWANZA (FULL FRAME RGB BORDER INAYOWAKA KOTE KOTE) */
+        @keyframes fullFrameGlow {
+            0% { border-color: #06b6d4; box-shadow: inset 0 0 25px rgba(6, 182, 212, 0.5), 0 0 25px rgba(6, 182, 212, 0.5); }
+            33% { border-color: #3b82f6; box-shadow: inset 0 0 25px rgba(59, 130, 246, 0.5), 0 0 25px rgba(59, 130, 246, 0.5); }
+            66% { border-color: #ec4899; box-shadow: inset 0 0 25px rgba(236, 72, 153, 0.5), 0 0 25px rgba(236, 72, 153, 0.5); }
+            100% { border-color: #06b6d4; box-shadow: inset 0 0 25px rgba(6, 182, 212, 0.5), 0 0 25px rgba(6, 182, 212, 0.5); }
+        }
+
+        .site-frame {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: 6px solid #06b6d4;
+            pointer-events: none;
+            z-index: 9999;
+            animation: fullFrameGlow 6s infinite;
+        }
+
+        /* LOGIN / CREATE ACCOUNT SCREEN */
+        #loginOverlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 7, 12, 0.96);
+            backdrop-filter: blur(20px);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-card {
+            background: rgba(15, 23, 42, 0.92);
+            border: 2px solid #06b6d4;
+            padding: 35px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 0 35px rgba(6, 182, 212, 0.4);
+            text-align: center;
+        }
+
+        .login-card h2 {
+            font-size: 32px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .login-card h2 span {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .login-card p {
+            color: #94a3b8;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 12px 18px;
+            margin-bottom: 15px;
+            border-radius: 30px;
+            border: 1px solid rgba(51, 65, 85, 0.8);
+            background: rgba(11, 15, 25, 0.9);
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .login-input:focus {
+            border-color: #06b6d4;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #06b6d4;
+            color: #0b0f19;
+            border: none;
+            border-radius: 30px;
+            font-weight: 900;
+            font-size: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px var(--primary-glow);
+            transition: 0.3s;
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+
+        .login-btn:hover {
+            background: #0891b2;
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.8);
+        }
+
+        .switch-auth {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-top: 15px;
+            cursor: pointer;
+            display: block;
+            text-decoration: underline;
+        }
+
+        .switch-auth:hover {
+            color: #06b6d4;
+        }
+
+        #mainContent {
+            display: none;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(11, 15, 25, 0.85);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #06b6d4;
+            backdrop-filter: blur(15px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        @keyframes logoRgbGlow {
+            0% { border-color: #06b6d4; box-shadow: 0 0 15px rgba(6, 182, 212, 0.6); color: #06b6d4; }
+            33% { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.6); color: #3b82f6; }
+            66% { border-color: #ec4899; box-shadow: 0 0 15px rgba(236, 72, 153, 0.6); color: #ec4899; }
+            100% { border-color: #06b6d4; box-shadow: 0 0 15px rgba(6, 182, 212, 0.6); color: #06b6d4; }
+        }
+
+        .brand-logo-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #06b6d4;
+            animation: logoRgbGlow 4s infinite;
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .brand-logo-box span {
+            color: #ffffff;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo-text span {
+            color: var(--primary-color);
+            text-shadow: 0 0 12px var(--primary-glow);
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        nav a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover { 
+            color: var(--primary-color); 
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        /* PROFILE CONTAINER & DROPDOWN NA UWEZO WA KUBADILISHA PICHA YA GMAIL/PROFILE */
+        .profile-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-img-box {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #06b6d4;
+            animation: logoRgbGlow 6s infinite;
+            cursor: pointer;
+            background: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .profile-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 50px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid #06b6d4;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            width: 200px;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+        }
+
+        .profile-dropdown label, .profile-dropdown a {
+            display: block;
+            padding: 12px 16px;
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.2s;
+            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+            cursor: pointer;
+        }
+
+        .profile-dropdown label:hover, .profile-dropdown a:hover {
+            background: rgba(6, 182, 212, 0.2);
+            color: var(--primary-color);
+        }
+
+        .hero-banner {
+            text-align: center;
+            padding: 40px 20px 20px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-banner h1 {
+            font-size: 38px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .hero-banner h1 span {
+            color: var(--primary-color);
+            text-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .hero-banner p {
+            color: #cbd5e1;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto 50px auto;
+            padding: 0 25px;
+            flex: 1;
+            width: 100%;
+        }
+
+        .server-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(51, 65, 85, 0.8);
+            color: #cbd5e1;
+            padding: 10px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 15px;
+            transition: 0.3s;
+            backdrop-filter: blur(10px);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--primary-color);
+            color: #0b0f19;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 18px var(--primary-glow);
+            transform: translateY(-2px);
+        }
+
+        .search-box {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .search-box input {
+            width: 100%;
+            max-width: 650px;
+            padding: 12px 20px;
+            border-radius: 35px;
+            border: 1px solid rgba(51, 65, 85, 0.8);
+            background-color: rgba(15, 23, 42, 0.75);
+            color: white;
+            font-size: 16px;
+            outline: none;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            backdrop-filter: blur(12px);
+            transition: 0.3s;
+        }
+
+        .search-box input:focus { 
+            border-color: var(--primary-color);
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .grid-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 25px;
+        }
+
+        @keyframes rgbBorderGlow {
+            0% { border-color: #06b6d4; box-shadow: 0 0 15px rgba(6, 182, 212, 0.4); }
+            33% { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
+            66% { border-color: #ec4899; box-shadow: 0 0 15px rgba(236, 72, 153, 0.4); }
+            100% { border-color: #06b6d4; box-shadow: 0 0 15px rgba(6, 182, 212, 0.4); }
+        }
+
+        .item-card {
+            background-color: var(--card-bg);
+            border: 2px solid rgba(51, 65, 85, 0.7);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(14px);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .item-card:hover {
+            animation: rgbBorderGlow 4s infinite;
+            transform: translateY(-8px);
+        }
+
+        .item-card::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, #06b6d4, #3b82f6, #ec4899, #eab308, #06b6d4);
+            background-size: 400%;
+            z-index: -1;
+            border-radius: 18px;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            animation: glowingBorder 8s linear infinite;
+        }
+
+        @keyframes glowingBorder {
+            0% { background-position: 0 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0 50%; }
+        }
+
+        .item-card:hover::before {
+            opacity: 1;
+        }
+
+        .item-card::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: rgba(11, 15, 25, 0.82);
+            border-radius: 14px;
+            z-index: -1;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(51, 65, 85, 0.7);
+            transition: transform 0.5s ease;
+        }
+
+        .item-card:hover .card-img {
+            transform: scale(1.03);
+        }
+
+        .card-img-empty {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 16px;
+            font-weight: 700;
+            border-bottom: 1px solid rgba(51, 65, 85, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .card-body {
+            padding: 18px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-body h3 {
+            color: #ffffff;
+            margin-bottom: 6px;
+            font-size: 20px;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        .item-card:hover .card-body h3 {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .card-body p {
+            color: #cbd5e1;
+            font-size: 15px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-action {
+            flex: 1;
+            background-color: var(--primary-color);
+            color: #0b0f19;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 900;
+            font-size: 15px;
+            text-align: center;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px var(--primary-glow);
+        }
+
+        .btn-action:hover { 
+            background-color: #0891b2;
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.8);
+        }
+
+        .btn-disabled {
+            background-color: rgba(30, 41, 59, 0.5);
+            color: #64748b;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        .btn-disabled:hover { background-color: rgba(30, 41, 59, 0.5); }
+
+        footer {
+            background: rgba(11, 15, 25, 0.95);
+            text-align: center;
+            padding: 20px;
+            color: #64748b;
+            font-size: 14px;
+            border-top: 1px solid rgba(51, 65, 85, 0.8);
+            margin-top: auto;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- INTRO SPLASH SCREEN YA TRENDY / GLOWMIST (KAMA KWENYE VIDEO) -->
+    <div id="introSplash">
+        <div class="intro-trendy-box">
+            <div class="intro-trendy-text">ONE <span>KIDDY</span></div>
+        </div>
+    </div>
+
+    <!-- MISTARI YA RANGI YA BODA YA KWANZA (RGB FULL FRAME GLOW) -->
+    <div class="site-frame"></div>
+
+    <!-- SEHEMU YA LOGIN / CREATE ACCOUNT -->
+    <div id="loginOverlay">
+        <div class="login-card" id="cardBox">
+            <h2 id="authTitle">One <span>Kiddy</span></h2>
+            <p id="authSubtitle">Tafadhali unda akaunti (Create Account) kwanza ili uendelee.</p>
+            
+            <!-- Fomu ya Create Account / Register -->
+            <form id="registerForm" onsubmit="handleRegister(event)">
+                <input type="text" id="regUser" class="login-input" placeholder="Weka Jina lako (Username)" required>
+                <input type="password" id="regPass" class="login-input" placeholder="Weka Neno la siri (Password)" required>
+                <button type="submit" class="login-btn">Create Account</button>
+                <span class="switch-auth" onclick="showLogin()">Una akaunti tayari? Log in hapa</span>
+            </form>
+
+            <!-- Fomu ya Login -->
+            <form id="loginForm" onsubmit="handleLogin(event)" style="display: none;">
+                <input type="text" id="logUser" class="login-input" placeholder="Weka Jina lako" required>
+                <input type="password" id="logPass" class="login-input" placeholder="Weka Neno la siri" required>
+                <button type="submit" class="login-btn">Log In</button>
+                <span class="switch-auth" onclick="showRegister()">Haujaunga akaunti? Create Account</span>
+            </form>
+        </div>
+    </div>
+
+    <!-- MAUDHUI YA WEBSITE YOTE -->
+    <div id="mainContent">
+        <header>
+            <div class="brand">
+                <div class="brand-logo-box">0<span>N</span></div>
+                <div class="logo-text">One <span>Kiddy</span></div>
+            </div>
+            <nav>
+                <div class="nav-links">
+                    <a href="#" onclick="filterCategory('all')">Hub Home</a>
+                    <a href="#">Server</a>
+                </div>
+                <!-- PROFILE NA UWEZO WA KUBADILISHA PICHA YA GMAIL/PROFILE -->
+                <div class="profile-container">
+                    <div class="profile-img-box" onclick="toggleDropdown()" id="userAvatarBox">
+                        <span>O</span>
+                    </div>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <label for="uploadAvatar">Change Profile Picture</label>
+                        <input type="file" id="uploadAvatar" accept="image/*" style="display: none;" onchange="changeProfilePicture(event)">
+                        <a href="#" onclick="alert('Google Account Linked')">Google Account</a>
+                        <a href="#" onclick="logout()">Log out</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="hero-banner">
+            <h1>Ultimate <span>Game & Media</span> Hub</h1>
+            <p>Gundua malango makuu ya mods, ramani, mabasi na wasifu maalum. Kila ulimwengu uliotafuta upo hapa mikononi mwako.</p>
+        </div>
+
+        <div class="container">
+            
+            <div class="server-tabs">
+                <button class="tab-btn active" onclick="filterCategory('all')">All Portals</button>
+                <button class="tab-btn" onclick="filterCategory('ets2-maps')">ETS2 Maps</button>
+                <button class="tab-btn" onclick="filterCategory('tz-maps')">Maps of Tanzania</button>
+                <button class="tab-btn" onclick="filterCategory('trucks')">Truck Mods</button>
+                <button class="tab-btn" onclick="filterCategory('bus-category')">Tanzania Mods of Bus</button>
+                <button class="tab-btn" onclick="filterCategory('movies')">Movies Zone</button>
+            </div>
+
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search for a map, bus mod, profile or truck here..." onkeyup="searchFiles()">
+            </div>
+
+            <div class="grid-section" id="fileList">
+                
+                <!-- 1. KADI KUU YA KUFUNGUA KATEGORIA YA BASI -->
+                <div class="item-card" data-category="bus-main" data-name="tanzania mods of bus">
+                    <img src="d14yutong v1a.jpg" alt="Tanzania Mods of Bus" class="card-img">
+                    <div class="card-body">
+                        <div>
+                            <h3>Tanzania Mods of Bus</h3>
+                            <p>Gundua mkusanyiko kamili wa mods zote za mabasi ya mikoani ya Tanzania.</p>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-action" onclick="filterCategory('bus-category')">Enter Hub</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. KADI KUU YA KUFUNGUA ETS2 MAPS -->
+                <div class="item-card" data-category="ets2-main" data-name="ets2 maps">
+                    <div class="card-img-empty">ETS2 Maps Portal</div>
+                    <div class="card-body">
+                        <div>
+                            <h3>ETS2 Maps Zone</h3>
+                            <p>Gundua ramani mbalimbali za kimataifa na miji ya Euro Truck Simulator 2.</p>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-action" onclick="filterCategory('ets2-maps')">Enter Hub</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. KADI KUU YA KUFUNGUA TRUCK MODS -->
+                <div class="item-card" data-category="trucks-main" data-name="truck mods">
+                    <div class="card-img-empty">Truck Mods Portal</div>
+                    <div class="card-body">
+                        <div>
+                            <h3>Truck Mods Zone</h3>
+                            <p>Gundua mods zote za malori (Scania, Volvo, Shacman) kwa ajili ya ETS2.</p>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-action" onclick="filterCategory('trucks')">Enter Hub</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. KADI YA MAX PROFILE (SAVE GAME) MBELE -->
+                <div class="item-card" data-category="profile-main" data-name="max profile save game">
+                    <div class="card-img-empty">Max Profile Portal</div>
+                    <div class="card-body">
+                        <div>
+                            <h3>Max Profile Save Game</h3>
+                            <p>Pakua mfumo kamili wa max profile wenye pesa nyingi na viwango vya juu kwa ETS2.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="max prof.rar" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MODS ZA NDANI YA BUS CATEGORY -->
+                <div class="item-card" data-category="bus-category" data-name="marcopolo g7 fx1200 bus mod" style="display: none;">
+                    <div class="card-img-empty">Marcopolo G7 FX1200</div>
+                    <div class="card-body">
+                        <div>
+                            <h3>Marcopolo G7 FX1200 Mod</h3>
+                            <p>Mod maarufu ya basi la Marcopolo G7 FX1200 v1.0 kwa ajili ya barabara za Tanzania.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="Marcopolo G7 FX1200 v1.0.scs" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card" data-category="bus-category" data-name="d14yutong v1a" style="display: none;">
+                    <img src="d14yutong v1a.jpg" alt="Yutong D14 Bus" class="card-img">
+                    <div class="card-body">
+                        <div>
+                            <h3>D14 Yutong Bus Mod</h3>
+                            <p>A special Yutong D14 bus mod with a clean look for regional trips.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="d14yutong v1a.rar" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card" data-category="bus-category" data-name="bus mod 02" style="display: none;">
+                    <div class="card-img-empty">No Image Yet</div>
+                    <div class="card-body">
+                        <div>
+                            <h3>BUS MOD 02</h3>
+                            <p>Additional bus mod package for ETS2.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="BUS_MOD_02.scs" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card" data-category="bus-category" data-name="bus01" style="display: none;">
+                    <div class="card-img-empty">No Image Yet</div>
+                    <div class="card-body">
+                        <div>
+                            <h3>BUS01 Mod</h3>
+                            <p>Standard bus mod file BUS01 for Tanzania routes.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="BUS01.scs" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card" data-category="bus-category" data-name="bus01 fix" style="display: none;">
+                    <div class="card-img-empty">No Image Yet</div>
+                    <div class="card-body">
+                        <div>
+                            <h3>BUS01 FIX Mod</h3>
+                            <p>Official fix patch for BUS01.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="BUS01_FIX.scs" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card" data-category="bus-category" data-name="bus01 fixx" style="display: none;">
+                    <div class="card-img-empty">No Image Yet</div>
+                    <div class="card-body">
+                        <div>
+                            <h3>BUS01 FIXX Mod</h3>
+                            <p>Secondary stability patch for BUS01.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="BUS01_FIXX.scs" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card" data-category="bus-category" data-name="dragonvip" style="display: none;">
+                    <img src="dragonvip.jpg" alt="Dragon VIP Bus" class="card-img">
+                    <div class="card-body">
+                        <div>
+                            <h3>Dragon VIP Bus Mod</h3>
+                            <p>Dragon VIP bus mod for Euro Truck Simulator 2.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="dragonvip.scs" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card" data-category="bus-category" data-name="fixyutongvip" style="display: none;">
+                    <div class="card-img-empty">No Image Yet</div>
+                    <div class="card-body">
+                        <div>
+                            <h3>Fix Yutong VIP Mod</h3>
+                            <p>Performance and texture fix for Yutong VIP.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="fixyutongvip.scs" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card" data-category="bus-category" data-name="fixyutongvip2" style="display: none;">
+                    <div class="card-img-empty">No Image Yet</div>
+                    <div class="card-body">
+                        <div>
+                            <h3>Fix Yutong VIP 2</h3>
+                            <p>Additional update patch for Yutong VIP mod.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="fixyutongvip2.scs" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card" data-category="bus-category" data-name="gdengine" style="display: none;">
+                    <div class="card-img-empty">No Image Yet</div>
+                    <div class="card-body">
+                        <div>
+                            <h3>GD Engine Sound Mod</h3>
+                            <p>Special engine sound addon for heavy buses.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="GDENGINE.scs" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card" data-category="bus-category" data-name="higer1" style="display: none;">
+                    <img src="higer1.jpg" alt="Higer Bus" class="card-img">
+                    <div class="card-body">
+                        <div>
+                            <h3>Higer Bus Mod</h3>
+                            <p>Higer passenger bus mod for regional roads.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="higer1.scs" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card" data-category="bus-category" data-name="icrf fixed" style="display: none;">
+                    <div class="card-img-empty">No Image Yet</div>
+                    <div class="card-body">
+                        <div>
+                            <h3>ICRF Fixed Mod</h3>
+                            <p>Compatibility patch and interior fix.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="icrf_fixed.scs" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card" data-category="bus-category" data-name="irizar i6s" style="display: none;">
+                    <img src="irizar_i6s.jpg" alt="Irizar i6s" class="card-img">
+                    <div class="card-body">
+                        <div>
+                            <h3>Irizar i6s Bus Mod</h3>
+                            <p>Mod of the Irizar i6s luxury bus with a modern look.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="Irizar_i6s.scs" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card" data-category="bus-category" data-name="yutong zk6126d v2.0" style="display: none;">
+                    <img src="YUTONG ZK6126D v2.0 by KD.jpg" alt="Yutong ZK6126D v2.0" class="card-img">
+                    <div class="card-body">
+                        <div>
+                            <h3>Yutong ZK6126D v2.0</h3>
+                            <p>Yutong ZK6126D version 2.0 mod.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="YUTONG ZK6126D v2.0 by KD.scs" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card" data-category="bus-category" data-name="yutong zk6126d v3.0" style="display: none;">
+                    <img src="YUTONG ZK6126D v3.0 by KD (1).jpg" alt="Yutong ZK6126D v3.0" class="card-img">
+                    <div class="card-body">
+                        <div>
+                            <h3>Yutong ZK6126D Bus Driver (v3.0)</h3>
+                            <p>The popular Yutong ZK6126D v3.0 mod for African roads.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="YUTONG ZK6126D v3.0 by KD (1).scs" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card" data-category="bus-category" data-name="yutong zk6932d1 yutong 9" style="display: none;">
+                    <img src="Yutong ZK6932D1(F9).jpg" alt="Yutong 9 ZK6932D1" class="card-img">
+                    <div class="card-body">
+                        <div>
+                            <h3>Yutong 9 (ZK6932D1 F9)</h3>
+                            <p>Mod maalum ya Yutong 9 (ZK6932D1) kwa ajili ya usafiri wa abiria mikoani.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="Yutong ZK6932D1(F9).scs" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card" data-category="bus-category" data-name="zhongtong megaclass" style="display: none;">
+                    <img src="Zhongtong_Mega_LCK6129D.jpg" alt="Zhongtong Megaclass" class="card-img">
+                    <div class="card-body">
+                        <div>
+                            <h3>Zhongtong Megaclass Mod</h3>
+                            <p>Zhongtong Megaclass bus mod for passenger transportation.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="Zhongtong_Mega_LCK6129D.scs" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MODS ZA NDANI YA ETS2-MAPS -->
+                <div class="item-card" data-category="ets2-maps" data-name="hoodland v2.2 map ets2" style="display: none;">
+                    <div class="card-img-empty">Hoodland v2.2 Map</div>
+                    <div class="card-body">
+                        <div>
+                            <h3>Hoodland Map v2.2</h3>
+                            <p>Mod mpya ya ramani ya Hoodland v2.2 kwa ajili ya Euro Truck Simulator 2.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="Hoodland_v2.2.scs" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card" data-category="ets2-maps" data-name="dsl map ets2" style="display: none;">
+                    <div class="card-img-empty">DSL Map</div>
+                    <div class="card-body">
+                        <div>
+                            <h3>DSL Map (ETS2 Maps)</h3>
+                            <p>Ramani mpya ya DSL kwa ajili ya mchezo wa Euro Truck Simulator 2.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="DSL map.rar" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card" data-category="ets2-maps" data-name="max tz map" style="display: none;">
+                    <div class="card-img-empty">Max TZ Map Folder</div>
+                    <div class="card-body">
+                        <div>
+                            <h3>Max TZ Map (Uncompressed)</h3>
+                            <p>Folda maalum yenye ramani za Max TZ kwa ajili ya usafiri wa Tanzania.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="max tz map/" target="_blank" class="btn-action">Open Folder</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card" data-category="ets2-maps" data-name="wonderland map" style="display: none;">
+                    <div class="card-img-empty">Wonderland Map</div>
+                    <div class="card-body">
+                        <div>
+                            <h3>Wonderland Map Folder</h3>
+                            <p>Folda maalum ya ramani ya Wonderland kwa ajili ya ETS2.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="wonderland/" target="_blank" class="btn-action">Open Folder</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MAP ZA TANZANIA -->
+                <div class="item-card" data-category="tz-maps" data-name="map za tanzania">
+                    <img src="d14yutong v1a.jpg" alt="Map za Tanzania" class="card-img">
+                    <div class="card-body">
+                        <div>
+                            <h3>Maps of Tanzania</h3>
+                            <p>Regional maps of Tanzania featuring local routes and bus stations.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="tanzania-maps.zip" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MODS ZA NDANI YA TRUCKS -->
+                <div class="item-card" data-category="trucks" data-name="shacman x5000 truck mod" style="display: none;">
+                    <div class="card-img-empty">Shacman Truck</div>
+                    <div class="card-body">
+                        <div>
+                            <h3>Shacman X5000 Truck Mod</h3>
+                            <p>Mod ya lori lenye nguvu la Shacman X5000 kwa ajili ya mizigo mizito ETS2.</p>
+                        </div>
+                        <div class="btn-group">
+                            <a href="Shacman_X5000_Trailer.zip" download class="btn-action">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MOVIES - COMING SOON -->
+                <div class="item-card" data-category="movies" data-name="movies coming soon">
+                    <div class="card-img-empty" style="font-size: 16px; color: var(--primary-color); font-weight: 900;">Coming Soon</div>
+                    <div class="card-body">
+                        <div>
+                            <h3>Movies Zone</h3>
+                            <p>Filamu mpya na za kusisimua zinakuja hivi karibuni. Kaa tayari!</p>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-action btn-disabled" disabled>Coming Soon</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 One Kiddy Ultimate Game & Media Zone. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const backgroundImages = [
+            'd14yutong v1a.jpg',
+            'irizar_i6s.jpg',
+            'higer1.jpg',
+            'dragonvip.jpg',
+            'Yutong ZK6932D1(F9).jpg',
+            'YUTONG ZK6126D v2.0 by KD.jpg',
+            'Zhongtong_Mega_LCK6129D.jpg',
+            'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1920&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1920&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1920&auto=format&fit=crop'
+        ];
+
+        let bgIndex = 0;
+
+        function changeBackground(imageName) {
+            document.body.style.backgroundImage = `linear-gradient(to bottom, rgba(5, 7, 12, 0.75), rgba(11, 15, 25, 0.90)), url('${imageName}')`;
+        }
+
+        function autoRotateBackground() {
+            bgIndex = (bgIndex + 1) % backgroundImages.length;
+            changeBackground(backgroundImages[bgIndex]);
+        }
+        setInterval(autoRotateBackground, 180000);
+
+        function toggleDropdown() {
+            let dropdown = document.getElementById('profileDropdown');
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+            } else {
+                dropdown.style.display = 'block';
+            }
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.closest('.profile-container')) {
+                let dropdown = document.getElementById('profileDropdown');
+                if (dropdown) dropdown.style.display = 'none';
+            }
+        }
+
+        function changeProfilePicture(event) {
+            let file = event.target.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('userAvatarBox').innerHTML = `<img src="${e.target.result}" alt="Profile">`;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function showLogin() {
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('authSubtitle').innerText = 'Ingia kwenye akaunti yako ili uendelee.';
+        }
+
+        function showRegister() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+            document.getElementById('authSubtitle').innerText = 'Tafadhali unda akaunti (Create Account) kwanza ili uendelee.';
+        }
+
+        function handleRegister(event) {
+            event.preventDefault();
+            let user = document.getElementById('regUser').value;
+            let pass = document.getElementById('regPass').value;
+            if(user && pass) {
+                localStorage.setItem('oneKiddyUser', user);
+                localStorage.setItem('oneKiddyPass', pass);
+                alert('Akaunti imetengenezwa mafanikio! Sasa tafadhali Log in.');
+                showLogin();
+            }
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            let user = document.getElementById('logUser').value;
+            let pass = document.getElementById('logPass').value;
+            
+            let savedUser = localStorage.getItem('oneKiddyUser');
+            
+            if(savedUser && user !== savedUser) {
+                alert('Akaunti haijulikani! Tafadhali Create Account kwanza.');
+                showRegister();
+                return;
+            }
+
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'flex';
+            
+            let firstLetter = user.charAt(0).toUpperCase();
+            document.getElementById('userAvatarBox').innerHTML = `<span>${firstLetter}</span>`;
+        }
+
+        function logout() {
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('loginOverlay').style.display = 'flex';
+            showLogin();
+        }
+
+        function searchFiles() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('item-card');
+
+            for (let i = 0; i < cards.length; i++) {
+                let name = cards[i].getAttribute('data-name');
+                if (name.includes(input)) {
+                    cards[i].style.display = "flex";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+
+        function filterCategory(category) {
+            let cards = document.getElementsByClassName('item-card');
+            let buttons = document.getElementsByClassName('tab-btn');
+
+            for(let btn of buttons) {
+                btn.classList.remove('active');
+            }
+            
+            event.target.classList.add('active');
+
+            for (let card of cards) {
+                let cat = card.getAttribute('data-category');
+                if (category === 'all') {
+                    if (cat === 'bus-category' || cat === 'ets2-maps' || cat === 'trucks') {
+                        card.style.display = "none";
+                    } else {
+                        card.style.display = "flex";
+                    }
+                } else if (category === 'ets2-maps') {
+                    if (cat === 'ets2-maps') {
+                        card.style.display = "flex";
+                    } else {
+                        card.style.display = "none";
+                    }
+                } else if (category === 'trucks') {
+                    if (cat === 'trucks') {
+                        card.style.display = "flex";
+                    } else {
+                        card.style.display = "none";
+                    }
+                } else if (category === 'bus-category') {
+                    if (cat === 'bus-category') {
+                        card.style.display = "flex";
+                    } else {
+                        card.style.display = "none";
+                    }
+                } else {
+                    if (cat === category) {
+                        card.style.display = "flex";
+                    } else {
+                        card.style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
